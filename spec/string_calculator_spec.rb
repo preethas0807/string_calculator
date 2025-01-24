@@ -9,10 +9,12 @@ RSpec.describe StringCalculator do
 
   it 'returns the number itself for a single number' do
     expect(StringCalculator.add('1')).to eq(1)
+    expect(StringCalculator.add('4')).to eq(4)
   end
 
   it 'returns the sum of two numbers' do
     expect(StringCalculator.add('1,2')).to eq(3)
+    expect(StringCalculator.add('20,30')).to eq(50)
   end
 
   it 'returns the sum of unknown number of inputs' do
@@ -22,5 +24,11 @@ RSpec.describe StringCalculator do
 
   it 'handles newlines as delimiters' do
     expect(StringCalculator.add("1\n2,3")).to eq(6)
+    expect(StringCalculator.add("1\n2\n3")).to eq(6)
+  end
+
+  it 'handles single custom delimiter' do
+    expect(StringCalculator.add("//;\n1;2")).to eq(3)
+    expect(StringCalculator.add("//:\n1:2:3")).to eq(6)
   end
 end
