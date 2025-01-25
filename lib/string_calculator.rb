@@ -6,13 +6,7 @@ class StringCalculator
 
     if numbers.start_with?("//")
       custom_delimiters, numbers = numbers[2..].split("\n", 2)
-      if custom_delimiters.start_with?("[")
-        # Multiple single-character delimiters in brackets
-        delimiters += custom_delimiters.scan(/\[.\]/).map { |d| d[1] }
-      else
-        # Single-character delimiter without brackets
-        delimiters << custom_delimiters
-      end
+      delimiters += custom_delimiters.scan(/\[([^\]]+)\]|(.)/).flatten.compact
     end
 
     delimiter_regex = Regexp.union(delimiters)

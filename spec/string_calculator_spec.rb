@@ -46,4 +46,9 @@ RSpec.describe StringCalculator do
     expect(StringCalculator.add("//[;][%]\n1;2%3")).to eq(6)
     expect(StringCalculator.add("//[,][:][*]\n1*2,3:4")).to eq(10)
   end
+
+  it 'handles delimiters of any length' do
+    expect(StringCalculator.add("//[***]\n1***2***3")).to eq(6)
+    expect(StringCalculator.add("//[***][::]\n1***2::3")).to eq(6)
+  end
 end
