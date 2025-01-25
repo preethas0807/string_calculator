@@ -1,5 +1,8 @@
 class StringCalculator
+  @@call_count = 0
+
   def self.add(numbers)
+    @@call_count += 1
     return 0 if numbers.empty?
 
     delimiters = [",", "\n"]
@@ -16,5 +19,9 @@ class StringCalculator
     raise "Negatives are not allowed: #{negatives.join(', ')}" unless negatives.empty?
 
     nums.reject { |n| n > 1000 }.sum
+  end
+
+  def self.get_called_count
+    @@call_count
   end
 end
