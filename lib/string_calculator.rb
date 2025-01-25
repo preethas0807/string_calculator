@@ -1,11 +1,12 @@
 class StringCalculator
+  DEFAULT_DELIMITERS = [",", "\n"].freeze
   @@call_count = 0
 
   def self.add(numbers)
     @@call_count += 1
     return 0 if numbers.empty?
 
-    delimiters = [",", "\n"]
+    delimiters = DEFAULT_DELIMITERS
 
     if numbers.start_with?("//")
       custom_delimiters, numbers = numbers[2..].split("\n", 2)
